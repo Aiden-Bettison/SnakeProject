@@ -13,35 +13,62 @@ class InteractionLayer : Layer, KeyDownHandler {
 //    let snake = Snake(rect: Rect(size: Size(width: 25, height:25)))
 //    let snake2 = Snake(rect: Rect(size: Size(width: 25, height:25)))
 
-    let snakes = [Snake(rect: Rect(size: Size(width: 25, height:25))), Snake(rect: Rect(size: Size(width: 25, height:25))), Snake(rect: Rect(size: Size(width: 25, height:25)))]
 
+    var snakes = [Snake(rect: Rect(size: Size(width: 25, height:25))), Snake(rect: Rect(size: Size(width: 25, height:25))), Snake(rect: Rect(size: Size(width: 25, height:25)))]
     
+
     func onKeyDown(key:String, code:String, ctrlKey:Bool, shiftKey:Bool, altKey:Bool, metaKey:Bool) {
-  //      if snakes[0].velocityX == 0 && snakes[0].velocityY == 0 {
-        for snake in 0 ..< snakes.count {
-        if key == "ArrowDown" || key == "s" {
-            snakes[snake].changeVelocity(velocityX: 0, velocityY: 5)
+      //  for snake in 0 ..< snakes.count {
+           var lastKey: String
+            if key == "ArrowDown" || key == "s" {
+          //  snakes[0].changeVelocity(velocityX: 0, velocityY: 5)
+          //  snakes[snake].changeVelocity(velocityX: 5, velocityY: 0)
+            lastKey = "ArrowDown"
+            if  lastKey == "ArrowDown"{
+                remove(entity: snakes[snakes.count])
+                snakes.remove(at: snakes.count)
+                snakes.insert(Snake(rect: Rect(topLeft: Point(x: snakes[0].rectangle.rect.topLeft.x, y: snakes[0].rectangle.rect.topLeft.y + 25), size: Size(width: 25, height: 25))), at: 0)
+                insert(entity: snakes[0], at: .front)
+                //(to: Point(x: snakes[0].rectangle.rect.topLeft.x, y: snakes[0].rectangle.rect.topLeft.y + 25))
+            }
         }
         else if key == "ArrowUp" || key == "w" {
-            snakes[snake].changeVelocity(velocityX: 0, velocityY: -5)
+          //  snakes[0].changeVelocity(velocityX: 0, velocityY: -5)
+          //  snakes[snake].changeVelocity(velocityX: 5, velocityY: 0)
+            lastKey = "ArrowUp"
+            if lastKey == "ArrowUp"{
+                //              snakes[snakes.count].move(to: Point(x: snakes[0].rectangle.rect.topLeft.x, y: snakes[0].rectangle.rect.topLeft.y - 25))
+                remove(entity: snakes[snakes.count])
+                snakes.remove(at: snakes.count)
+                snakes.insert(Snake(rect: Rect(topLeft: Point(x: snakes[0].rectangle.rect.topLeft.x, y: snakes[0].rectangle.rect.topLeft.y - 25), size: Size(width: 25, height: 25))), at: 0)
+                insert(entity: snakes[0], at: .front)
+            }
         }
         else if key == "ArrowLeft" || key == "a" {
-            snakes[snake].changeVelocity(velocityX: -5, velocityY: 0)
+         //   snakes[0].changeVelocity(velocityX: -5, velocityY: 0)
+         //   snakes[snake].changeVelocity(velocityX: -5, velocityY: 0)
+            lastKey = "ArrowLeft"
+          if lastKey == "ArrowLeft"{
+              //snakes[snakes.count].move(to: Point(x: snakes[0].rectangle.rect.topLeft.x - 25, y: snakes[0].rectangle.rect.topLeft.y))
+              remove(entity: snakes[snakes.count])
+                snakes.remove(at: snakes.count)
+                snakes.insert(Snake(rect: Rect(topLeft: Point(x: snakes[0].rectangle.rect.topLeft.x - 25, y: snakes[0].rectangle.rect.topLeft.y), size: Size(width: 25, height: 25))), at: 0)
+                insert(entity: snakes[0], at: .front)
+          }
         }
         else if key == "ArrowRight" || key ==  "d" {
-            snakes[snake].changeVelocity(velocityX: 5, velocityY: 0)
-        }        
+         //   snakes[0].changeVelocity(velocityX: 5, velocityY: 0)
+         //   snakes[snake].changeVelocity(velocityX: 5, velocityY: 0)
+            lastKey = "ArrowRight"
+            if lastKey == "ArrowRight"{
+                //snakes[snakes.count].move(to: Point(x: snakes[0].rectangle.rect.topLeft.x + 25, y: snakes[0].rectangle.rect.topLeft.y))
+                remove(entity: snakes[snakes.count])
+                snakes.remove(at: snakes.count)
+                snakes.insert(Snake(rect: Rect(topLeft: Point(x: snakes[0].rectangle.rect.topLeft.x + 25, y: snakes[0].rectangle.rect.topLeft.y), size: Size(width: 25, height: 25))), at: 0)
+                insert(entity: snakes[0], at: .front)
+            }
         }
-        }
-        
-        
-        
-
-//    func onKeyUp(key:String, code:String, ctrlKey:Bool, shiftKey:Bool, altKey:Bool, metaKey:Bool) {
-//        snake.changeVelocity(velocityX: 0, velocityY: -5)
-//        print("\(snake.velocityX), \(snake.velocityY)")
-//    }
-    
+            }
    
 
     
@@ -76,67 +103,3 @@ class InteractionLayer : Layer, KeyDownHandler {
     //      dispatcher.unregisterKeyUpHandler(handler: self)
       }
 }
-
-
-//Junk Text Code (For Now) Below:
-        else {
-            for snake in 1 ..< snakes.count {            
-                if key == "ArrowDown" || key == "s" {
-                    snakes[0].rectangle.rect.topLeft.y += 25
-                    if snakes[snake].velocityX < 0 {
-                        snakes[snake].rectangle.rect.topLeft.x -= 25
-                    }
-                    else if snakes[snake].velocityX > 0 {
-                        snakes[snake].rectangle.rect.topLeft.x += 25                    
-                    }
-                    snakes[0].changeVelocity(velocityX: 0, velocityY: 5)
-                }
-                else if key == "ArrowUp" || key == "w" {
-                    snakes[0].rectangle.rect.topLeft.y -= 25
-                    
-                    if snakes[snake].velocityX < 0 {
-                        snakes[snake].rectangle.rect.topLeft.x -= 25
-                    }
-                    else if snakes[snake].velocityX > 0 {
-                        snakes[snake].rectangle.rect.topLeft.x += 25
-                    }
-                    snakes[0].changeVelocity(velocityX: 0, velocityY: -5)
-                }
-                else if key == "ArrowLeft" || key == "a" {
-                    snakes[0].rectangle.rect.topLeft.x -= 25
-        
-                    if snakes[snake].velocityY < 0 {
-                        snakes[snake].rectangle.rect.topLeft.y -= 25
-                    }
-                    else if snakes[snake].velocityY > 0 {
-                        snakes[snake].rectangle.rect.topLeft.y += 25
-                    }
-                    snakes[0].changeVelocity(velocityX: -5, velocityY: 0)
-                }
-                else if key == "ArrowRight" || key ==  "d" {
-                    snakes[0].rectangle.rect.topLeft.x += 25
-                    if snakes[snake].velocityY < 0 {
-                        snakes[snake].rectangle.rect.topLeft.y -= 25
-                    }
-                    else if snakes[snake].velocityY > 0 {
-                        snakes[snake].rectangle.rect.topLeft.y += 25
-                    }
-                    snakes[0].changeVelocity(velocityX: 5, velocityY: 0)
-                }
-            }
-
-          for snake in 1 ..< snakes.count {
-              let previousSnake = snakes[snake - 1]
-
-              if snakes[snake].velocityX != previousSnake.velocityX {
-                  if snakes[snake].rectangle.rect.topLeft.x == previousSnake.rectangle.rect.topLeft.x {
-                      snakes[snake].changeVelocity(velocityX: previousSnake.velocityX, velocityY: previousSnake.velocityY)
-                  }
-              }
-              else if snakes[snake].velocityY != previousSnake.velocityY {
-                  if snakes[snake].rectangle.rect.topLeft.y == previousSnake.rectangle.rect.topLeft.y {
-                      snakes[snake].changeVelocity(velocityX: previousSnake.velocityX, velocityY: previousSnake.velocityY)
-                  }
-              }
-          }
-        }
