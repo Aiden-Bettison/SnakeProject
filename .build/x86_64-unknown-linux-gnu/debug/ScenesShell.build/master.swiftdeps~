@@ -1,0 +1,12 @@
+version: "Swift version 5.5.3 (swift-5.5.3-RELEASE)"
+options: "941b8ac49fa322c730a2d9516ac37b04e8a725f94672371d3bae405f3df2e389"
+build_start_time: [1649949106, 955461978]
+build_end_time: [1649949113, 952352046]
+inputs:
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/Background.swift": [1649948951, 565581560]
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/BackgroundLayer.swift": [1649947641, 9997129]
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/ForegroundLayer.swift": [1649947681, 165089130]
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/InteractionLayer.swift": !private [1649949061, 328154087]
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/MainScene.swift": [1649947669, 390528202]
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/ShellDirector.swift": [1649947696, 243246078]
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/Snake.swift": !private [1649949016, 965580940]

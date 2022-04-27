@@ -1,0 +1,41 @@
+{
+  "": {
+    "swift-dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/master.swiftdeps"
+  },
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/BackgroundLayer.swift": {
+    "dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/BackgroundLayer.d",
+    "object": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/BackgroundLayer.swift.o",
+    "swiftmodule": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/BackgroundLayer~partial.swiftmodule",
+    "swift-dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/BackgroundLayer.swiftdeps"
+  },
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/ForegroundLayer.swift": {
+    "dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ForegroundLayer.d",
+    "object": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ForegroundLayer.swift.o",
+    "swiftmodule": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ForegroundLayer~partial.swiftmodule",
+    "swift-dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ForegroundLayer.swiftdeps"
+  },
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/InteractionLayer.swift": {
+    "dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/InteractionLayer.d",
+    "object": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/InteractionLayer.swift.o",
+    "swiftmodule": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/InteractionLayer~partial.swiftmodule",
+    "swift-dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/InteractionLayer.swiftdeps"
+  },
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/MainScene.swift": {
+    "dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/MainScene.d",
+    "object": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/MainScene.swift.o",
+    "swiftmodule": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/MainScene~partial.swiftmodule",
+    "swift-dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/MainScene.swiftdeps"
+  },
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/ShellDirector.swift": {
+    "dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ShellDirector.d",
+    "object": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ShellDirector.swift.o",
+    "swiftmodule": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ShellDirector~partial.swiftmodule",
+    "swift-dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ShellDirector.swiftdeps"
+  },
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/Snake.swift": {
+    "dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/Snake.d",
+    "object": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/Snake.swift.o",
+    "swiftmodule": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/Snake~partial.swiftmodule",
+    "swift-dependencies": "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/Snake.swiftdeps"
+  }
+}

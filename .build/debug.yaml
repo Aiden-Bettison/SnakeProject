@@ -1,0 +1,48 @@
+client:
+  name: basic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "ScenesShell-debug.module": ["<ScenesShell-debug.module>"]
+  "main": ["<ScenesShell-debug.module>"]
+  "test": ["<ScenesShell-debug.module>"]
+default: "main"
+nodes:
+  "/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/":
+    is-directory-structure: true
+commands:
+  "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ScenesShell.swiftmodule.o":
+    tool: shell
+    inputs: ["/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.swiftmodule"]
+    outputs: ["/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ScenesShell.swiftmodule.o"]
+    description: "Wrapping AST for ScenesShell for debugging"
+    args: ["/opt/swift-5.5.3-RELEASE-ubuntu20.04/usr/bin/swiftc","-modulewrap","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.swiftmodule","-o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ScenesShell.swiftmodule.o","-target","x86_64-unknown-linux-gnu"]
+
+  "<ScenesShell-debug.module>":
+    tool: phony
+    inputs: ["/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/BackgroundLayer.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ForegroundLayer.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/InteractionLayer.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/MainScene.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ShellDirector.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/Snake.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.swiftmodule"]
+    outputs: ["<ScenesShell-debug.module>"]
+
+  "C.ScenesShell-debug.module":
+    tool: swift-compiler
+    inputs: ["/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/BackgroundLayer.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/ForegroundLayer.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/InteractionLayer.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/MainScene.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/ShellDirector.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/Snake.swift"]
+    outputs: ["/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/BackgroundLayer.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ForegroundLayer.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/InteractionLayer.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/MainScene.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ShellDirector.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/Snake.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.swiftmodule"]
+    executable: "/opt/swift-5.5.3-RELEASE-ubuntu20.04/usr/bin/swiftc"
+    module-name: "ScenesShell"
+    module-output-path: "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.swiftmodule"
+    import-paths: ["/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug"]
+    temps-path: "/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build"
+    objects: ["/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/BackgroundLayer.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ForegroundLayer.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/InteractionLayer.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/MainScene.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/ShellDirector.swift.o","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ScenesShell.build/Snake.swift.o"]
+    other-args: ["-target","x86_64-unknown-linux-gnu","-swift-version","5","-enable-batch-mode","-index-store-path","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/index/store","-Onone","-enable-testing","-g","-j8","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/home/aiden-bettison/Experiences/SnakeGame/.build/x86_64-unknown-linux-gnu/debug/ModuleCache","-parseable-output","-parse-as-library","-color-diagnostics","-I","/usr/local/lib/merlin/Igis-1.3.7/Igis/.build/debug","-L","/usr/local/lib/merlin/Igis-1.3.7/Igis/.build/debug","-lIgis","-I","/usr/local/lib/merlin/Scenes-1.1.5/Scenes/.build/debug","-L","/usr/local/lib/merlin/Scenes-1.1.5/Scenes/.build/debug","-lScenes"]
+    sources: ["/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/BackgroundLayer.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/ForegroundLayer.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/InteractionLayer.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/MainScene.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/ShellDirector.swift","/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/Snake.swift"]
+    is-library: true
+    enable-whole-module-optimization: false
+    num-threads: 8
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/home/aiden-bettison/Experiences/SnakeGame/Sources/ScenesShell/","/home/aiden-bettison/Experiences/SnakeGame/Package.swift","/home/aiden-bettison/Experiences/SnakeGame/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+
