@@ -1,10 +1,8 @@
 import Foundation
-//import GCD
 import Scenes
 import Igis
 
-
-class Snake : RenderableEntity {
+struct Snake {
     let GameOverText : Text
     var rectangle: Rectangle
     var GameOver = false
@@ -12,45 +10,84 @@ class Snake : RenderableEntity {
  //   var velocityX = 0
  //   var velocityY = 0
     
- 
-            
         let  strokeStyle = StrokeStyle(color:Color(.green))
         let fillStyle = FillStyle(color:Color(.green))
         let lineWidth = LineWidth(width:2)
 
-/*         func changeVelocity(velocityX:Int, velocityY:Int) {
-        self.velocityX = velocityX
-        self.velocityY = velocityY
-        }
-        
- */
-         
-/*    func boundingGrid(canvas: Canvas, rect: Rect, rows: Int, columns: Int) {
-        var array = [rect]
-        var Rect = rect
-        for _ in 0 ..< columns {
-            for _ in 0 ..< rows{
-            let newRect = Rect
-            array.append(newRect)
-            Rect.topLeft.y += Rect.size.height
-            }
-            Rect.topLeft.x += Rect.size.width        
-        }
-        }
-        
- */
                    
-    init(rect:Rect) {
-        rectangle = Rectangle(rect:rect, fillMode:.fillAndStroke)
+ 
+            
+        init(head: Coordinate) {
+        self.init(head, [], .north)
+        /*rectangle = Rectangle(rect:rect, fillMode:.fillAndStroke)
         GameOverText = Text(location: Point(x: 0, y: 0), text: "GAME OVER")
         GameOverText.font = "60pt Arial"
+        
+         */
 
         // Using a meaningful name can be helpful for debugging
-        super.init(name: "Snake")
+//        super.init(name: "Snake")
     }
-//             func move(velocityX: Int, velocityY: Int) {
-//                 rectangle.rect.topLeft += Point(x: velocityX, y: velocityY)
-//         }
+
+        enum Facing { case north, east, south, west }
+        enum Move {case forward, right, left }
+        enum Change { case move(Move), grow  }
+
+        let head  : Coordinate
+
+        let tail  : [Coordinate]
+        
+        var body  : [Coordinate] { [head] + tail }
+
+        let facing : Facing
+
+
+        func alter(_ change: Change) -> Self {
+            func growBody() -> [Coordinate] {
+                tail.last != nil ? tail + [tail.last!] : [head + tail]
+            }
+
+            switch change {
+            case let .move(direction):
+                return move (direction)
+
+            case .grow:
+                return .init(head, growBody(), facing)
+
+            }
+        }
+
+        private init(_h: Coordinate, _ t: [Coordinate], _ f : Facing) {
+            head = h; tail = t; facing = f
+        }
+        private func move(_ m: Move) -> Self {
+            func newSnakeBody() -> [Coordinate] {
+                Array(([head] + tail).prefix(max(tail.count, 0)))
+            }
+
+            switch (m, facing) {
+            case (.forward, .north): return .init((x: head.x,   y: head.y - 1), newSnakeBody(), .north)
+            case (.forward, .east ): return .init((x:head.x + 1, y:head.y    ), newSnakeBody(), .east )
+            case (.forward, .south): return .init((x:head.x,     y:head.y + 1), newSnakeBody(), .south)
+            case (.forward, .west ): return .init((x:head.x - 1, y:head.y    ), newSnakeBody(), .west )
+            case (   .left, .north): return .init((x:head.x - 1, y:head.y    ), newSnakeBody(), .west )
+            case (   .left, .east ): return .init((x:head.x,     y:head.y - 1), newSnakeBody(), .north)
+            case (   .left, .south): return .init((x:head.x + 1, y:head.y    ), newSnakeBody(), .east )
+            case (   .left, .west ): return .init((x:head.x,     y:head.y + 1), newSnakeBody(), .south)
+            case (  .right, .north): return .init((x:head.x + 1, y:head.y    ), newSnakeBody(), .east )
+            case (  .right, .east ): return .init((x:head.x,     y:head.y + 1), newSnakeBody(), .south)
+            case (  .right, .south): return .init((x:head.x - 1, y:head.y    ), newSnakeBody(), .west )
+            case (  .right, .west ): return .init((x:head.x,     y:head.y - 1), newSnakeBody(), .north)
+            }
+        }
+
+        class Snake : RenderableEntity{
+
+        init(rect: Rect) {
+            rectangle = Rectangle(topLeft: Coordinate, rect: rect, fillMode: .fillAndStroke)
+            GameOverText = Text(location: Point(x: 0, y: 0), text: "GAME OVER")
+            GameOverText.font = "60pt Arial"            
+        }
 
     override func calculate(canvasSize: Size) {
         
@@ -60,14 +97,6 @@ class Snake : RenderableEntity {
          
         let boundingRect = Rect(topLeft: Point(x: canvasSize.center.x - 625, y: canvasSize.center.y - 375), size: Size(width: 25, height: 25))
         
-
-       /*   repeat {
-        delay(bySeconds: 0.15) {        
-            self.move(velocityX: self.velocityX, velocityY: self.velocityY)
-        }
-        }while GameOver == true
-        
-        */
 
         let canvasBoundingRect =  Rect(topLeft: Point(x: canvasSize.center.x - 625, y: canvasSize.center.y - 375), size: Size(width: 25 * 50, height: 25 * 30))
 
@@ -80,25 +109,12 @@ class Snake : RenderableEntity {
         let tooFarDown = snakeBoundingRect.topLeft.y + snakeBoundingRect.size.width > canvasBoundingRect.topLeft.y + canvasBoundingRect.size.height
         
         if tooFarLeft || tooFarRight {
-//            move(to: canvasSize.center)
-        //    velocityX = 0
-        //    velocityY = 0
-
-            
             GameOver = true
 
         }
 
         if tooFarUp || tooFarDown {
-      //     move(to: canvasSize.center)
-      //      velocityX = 0
-      //      velocityY = 0 
-        
-            
-            
             GameOver = true
-//            GameOver.location = canvasSize.center            
-//            canvas.render(GameOver)
         }
         }
     
@@ -108,10 +124,26 @@ if GameOver == true {
      canvas.render(GameOverText)
 }
         canvas.render(strokeStyle, fillStyle, lineWidth, rectangle)
-    }
+    }        
+        }
+}
+                   
+
+
+            
+                      
+/*
+//             func move(velocityX: Int, velocityY: Int) {
+//                 rectangle.rect.topLeft += Point(x: velocityX, y: velocityY)
+//         }
+
+
 
     func move(to point:Point) {
         rectangle.rect.topLeft = point
     }
     
 }
+
+
+ */
