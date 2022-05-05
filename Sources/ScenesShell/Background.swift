@@ -35,7 +35,8 @@ class Background : RenderableEntity {
 
     func boundingRect(canvas: Canvas, columns: Int, rows: Int){
         if let canvasSize = canvas.canvasSize {
-         let BoundingRect = Rect(topLeft: Point(x: canvasSize.center.x - 625, y: canvasSize.center.y - 375), size: Size(width: 25 * columns, height: 25 * rows))
+            let BoundingRect = Rect(topLeft: Point(x: canvasSize.center.x - 625, y: canvasSize.center.y - 375), size: Size(width: 25 * columns, height: 25 * rows))
+//            print(BoundingRect.topLeft)
         }
     }
 
@@ -65,9 +66,9 @@ class Background : RenderableEntity {
            let rect = Rect(topLeft: Point(x:canvasSize.center.x - 625, y: canvasSize.center.y - 375), size: Size(width: 25, height: 25))
           let columns = 50
           let rows = 30
-          renderRectangleGrid(canvas: canvas, rect: rect, columns: columns,  rows: rows)
-          boundingRect(canvas: canvas, columns: columns, rows: rows)
-          renderRectangle(canvas: canvas, rect: boundingRect())
+//          renderRectangleGrid(canvas: canvas, rect: rect, columns: columns,  rows: rows)
+//          boundingRect(canvas: canvas, columns: columns, rows: rows)
+//          renderRectangle(canvas: canvas, rect: boundingRect())
  
           
       }

@@ -2,17 +2,12 @@ import Foundation
 import Scenes
 import Igis
 
-struct Snake {
-    let GameOverText : Text
-    var rectangle: Rectangle
-    var GameOver = false
+/* struct Snake {
 
  //   var velocityX = 0
  //   var velocityY = 0
     
-        let  strokeStyle = StrokeStyle(color:Color(.green))
-        let fillStyle = FillStyle(color:Color(.green))
-        let lineWidth = LineWidth(width:2)
+   
 
                    
  
@@ -81,13 +76,38 @@ struct Snake {
             }
         }
 
+        
+ */
         class Snake : RenderableEntity{
+    let GameOverText : Text
+    var rectangle: Rectangle
+    var GameOver = false
 
-        init(rect: Rect) {
-            rectangle = Rectangle(topLeft: Coordinate, rect: rect, fillMode: .fillAndStroke)
+
+    let  strokeStyle = StrokeStyle(color:Color(.black))
+        let fillStyle = FillStyle(color:Color(.green))
+        let lineWidth = LineWidth(width:2)
+
+        
+            init(rect: Rect) {
+ //           let rect = Rect(topLeft: head, size: Size(width: 25, height: 25))
+                rectangle = Rectangle(rect: rect, fillMode: .fillAndStroke)
             GameOverText = Text(location: Point(x: 0, y: 0), text: "GAME OVER")
             GameOverText.font = "60pt Arial"            
-        }
+            }
+
+            
+//             func move(velocityX: Int, velocityY: Int) {
+//                 rectangle.rect.topLeft += Point(x: velocityX, y: velocityY)
+//         }
+
+
+
+    func move(to point:Point) {
+        rectangle.rect.topLeft = point
+    }
+    
+
 
     override func calculate(canvasSize: Size) {
         
@@ -123,27 +143,16 @@ struct Snake {
 if GameOver == true {
      canvas.render(GameOverText)
 }
-        canvas.render(strokeStyle, fillStyle, lineWidth, rectangle)
+canvas.render(strokeStyle, fillStyle,  lineWidth, rectangle)
     }        
         }
-}
+
                    
 
 
             
                       
-/*
-//             func move(velocityX: Int, velocityY: Int) {
-//                 rectangle.rect.topLeft += Point(x: velocityX, y: velocityY)
-//         }
 
 
 
-    func move(to point:Point) {
-        rectangle.rect.topLeft = point
-    }
-    
-}
 
-
- */
