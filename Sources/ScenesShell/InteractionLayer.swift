@@ -16,7 +16,11 @@ class InteractionLayer : Layer, KeyDownHandler {
     var tails = [0]
     var tail = 0
     var size = 0
-    var isFacing = ""
+    var isFacing = "right"
+    var isGameOver = false
+    var apple = 0
+    var score = 0
+    
    
    
 
@@ -54,42 +58,46 @@ class InteractionLayer : Layer, KeyDownHandler {
                   tails.insert(snake, at: 0)
                   size += 1
               }
-              print(tails)
+//              print(tails)
               snakes[snake].fillStyle = FillStyle(color: Color(.green))
               
           }
     }
 
+    func generateApple() {
+        apple = Int.random(in: 0 ..< 1500)
+        if apple != head && apple != tails[0] && apple != tails[1] {
+            snakes[apple].fillStyle = FillStyle(color: Color(.red))
+            }
+        else {
+            apple = Int.random(in: 0 ..< 1500)
+            snakes[apple].fillStyle = FillStyle(color: Color(.red))
+        }
+    }
     
-
-    func onKeyDown(key:String, code:String, ctrlKey:Bool, shiftKey:Bool, altKey:Bool, metaKey:Bool) {
+func  onKeyDown(key:String, code:String, ctrlKey:Bool, shiftKey:Bool, altKey:Bool, metaKey:Bool) {
 
        switch key {
        case "ArrowUp":
            if isFacing != "down" {
                isFacing = "up"
            }
-
            
        case "w":
            if isFacing != "down" {
                isFacing = "up"
            }
 
-
-
        case "ArrowLeft":
            if isFacing != "right" {
                isFacing = "left"
            }
-
 
        case "a":
            if isFacing != "right" {
                isFacing = "left"
            }
            
-
        case "ArrowDown":
            if isFacing != "up" {
                isFacing = "down"
@@ -105,66 +113,150 @@ class InteractionLayer : Layer, KeyDownHandler {
                isFacing = "right"
            }
 
-
        case "d":
            if isFacing != "left" {
                isFacing = "right"
            }
-
-          
-
-           
+    
        default:
            print("Fatal Error: not a direction key.")
        }
 
-       // print(isFacing)
+       //       return isFacing
 
-       switch isFacing {
+       if isGameOver == false {
+                           switch isFacing {
        case "up":
                tail = tails.last!
                //snakes[head - 50].rectangle.fillMode = .fillAndStroke
-               snakes[head - 50].fillStyle = FillStyle(color: Color(.green))
+               if head / 50 != 0 {
+                   snakes[head - 50].fillStyle = FillStyle(color: Color(.green))
+                   head -= 50
+
+               tails.insert((head + 50), at: 0)
+               if head != apple {
                snakes[tail].fillStyle = FillStyle(color: Color(.white))
-               tails.insert((head), at: 0)
                tails.remove(at: size)
-               head -= 50
+               }
+               else{
+                   generateApple()
+                   size += 1
+                   score += 1000
+               }
+               }
+               else {
+                   isGameOver = true
+               }
+                   for tail in 0 ..< tails.count {
+                   if head == tails[tail] {
+                       isGameOver = true
+                   }
+               }
           
        case "down":
                tail = tails.last!
                //snakes[head - 50].rectangle.fillMode = .fillAndStroke
-               snakes[head + 50].fillStyle = FillStyle(color: Color(.green))
+               if head / 50 != 29 {
+                   snakes[head + 50].fillStyle = FillStyle(color: Color(.green))
+                   head += 50
+               tails.insert((head - 50), at: 0)
+
+               if head != apple {
                snakes[tail].fillStyle = FillStyle(color: Color(.white))
-               tails.insert((head), at: 0)
                tails.remove(at: size)
-               head += 50
+               }
+               else{
+                   generateApple()
+                   size += 1
+                   score += 1000
+               }
+               }
+               else {
+                   isGameOver = true
+               }
+                   for tail in 0 ..< tails.count {
+                   if head == tails[tail] {
+                       isGameOver = true
+                   }
+               }
+   
           
        case "left":          
-                tail = tails.last!
+           tail = tails.last!
+           if head % 50 != 0 {
                snakes[head - 1].fillStyle = FillStyle(color: Color(.green))
-               snakes[tail].fillStyle = FillStyle(color: Color(.white))
-               tails.insert((head), at: 0)
-               tails.remove(at: size)
                head -= 1
+               tails.insert((head + 1), at: 0)
+                              
+               if head != apple {
+               snakes[tail].fillStyle = FillStyle(color: Color(.white))
+               tails.remove(at: size)
+               }
+               else{
+                   generateApple()
+                   size += 1
+                   score += 1000
+               }
+               }
+               else if head % 50 == 0 {
+                   isGameOver = true
+               }
+               for tail in 0 ..< tails.count {
+                   if head == tails[tail] {
+                       isGameOver = true
+                   }
+               }
+               
        case "right":
                 tail = tails.last!
-       //        snakes[head + 1].rectangle.fillMode = .fillAndStroke
-             snakes[head + 1].fillStyle = FillStyle(color: Color(.green))
-             snakes[tail].fillStyle = FillStyle(color: Color(.white))
-               tails.insert(head, at: 0)
+                //        snakes[head + 1].rectangle.fillMode = .fillAndStroke
+                if head % 50 != 49 {
+                    snakes[head + 1].fillStyle = FillStyle(color: Color(.green))
+                    head += 1
+               tails.insert(head - 1, at: 0)
+
+               if head != apple {
+               snakes[tail].fillStyle = FillStyle(color: Color(.white))
                tails.remove(at: size)
-               head += 1
+               }
+               else{
+                   generateApple()
+                   size += 1
+                   score += 1000
+               }
+               }
+               else {
+                   isGameOver = true
+               }
+               for tail in 0 ..< tails.count {
+                   if head == tails[tail] {
+                       isGameOver = true
+                   }
+               }               
+               
        default:
            print("Snake is not facing a direction")
-           }
-           
+                }
+       }
 
-           
+              else if isGameOver == true {
+           for grid in 0 ..< snakes.count {
+               snakes[grid].fillStyle = FillStyle(color: Color(.red))
+               }
+               print("Score: \(score)")
+
+ 
+       }
+       
+       
+
 
     }
 
 
-    
+      
+   // func onKeyUp(key:String, code:String, ctrlKey:Bool, shiftKey:Bool, altKey:Bool, metaKey:Bool) {
+   // }
     
     
       init() {
@@ -178,6 +270,7 @@ class InteractionLayer : Layer, KeyDownHandler {
               insert(entity: snakes[snake], at: .front)
               
           }
+          generateApple()
                 // insert(entity: snakes[])
       }
 
@@ -187,8 +280,14 @@ class InteractionLayer : Layer, KeyDownHandler {
          
           
                     dispatcher.registerKeyDownHandler(handler: self)
-   //       dispatcher.registerKeyUpHandler(handler: self)
-      }
+    //                dispatcher.registerKeyUpHandler(handler: self)
+     }
+
+              
+
+           
+
+     
       
       override func postTeardown() {
           dispatcher.unregisterKeyDownHandler(handler: self)
